@@ -12,7 +12,16 @@
         android:theme="@style/Theme.FASTTransitHub"
         tools:targetApi="31">
         <activity
-            android:name=".Admin.Dashboard"
+            android:name=".User.DashboardActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Admin.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

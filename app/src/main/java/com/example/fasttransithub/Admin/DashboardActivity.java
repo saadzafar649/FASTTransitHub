@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.fasttransithub.R;
 
-public class Dashboard extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
