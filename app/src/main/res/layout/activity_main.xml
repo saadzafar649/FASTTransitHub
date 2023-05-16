@@ -4,7 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background=""
+    android:textDirection="firstStrongRtl"
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/txtwellcome"
+        android:layout_width="214dp"
+        android:layout_height="55dp"
+        android:autoSizeTextType="uniform"
+
+        android:text="Wellcome"
+        android:textAlignment="center"
+        android:textColor="#0099d4"
+
+        android:textDirection="locale"
+        android:textEditPasteWindowLayout="@android:layout/simple_list_item_2"
+        android:textFontWeight="@integer/material_motion_duration_medium_1"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        tools:ignore="HardcodedText,MissingConstraints,VisualLintOverlap"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="338dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="259dp"
+        app:srcCompat="@mipmap/nameicon_foreground"
+        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints"
+        tools:layout_editor_absoluteX="80dp"
+        tools:layout_editor_absoluteY="48dp" />
+
+    <Button
+        android:id="@+id/btnAdmin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:text="Admin"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="225dp"
+        tools:layout_editor_absoluteY="469dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:autoSizeTextType="uniform"
+        android:padding="4dp"
+        android:text="User"
+        android:textAlignment="center"
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="469dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
