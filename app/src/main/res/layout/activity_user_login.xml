@@ -12,6 +12,9 @@
         android:layout_height="259dp"
         android:layout_marginTop="36dp"
         android:src="@mipmap/nameicon_foreground"
+        tools:ignore="ContentDescription,MissingConstraints,ImageContrastCheck"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="97dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +33,8 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="Autofill,TextContrastCheck" />
 
     <EditText
         android:id="@+id/loginPassword"
@@ -45,7 +49,8 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginemail" />
+        app:layout_constraintTop_toBottomOf="@+id/loginemail"
+        tools:ignore="Autofill,TextContrastCheck" />
 
 
     <Button

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/map"
+            android:title="Map"
+            android:icon="@drawable/admin_map"/>
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@drawable/admin_home"/>
+        <item
+            android:id="@+id/manage_account"
+            android:title="Manage Account"
+            android:icon="@drawable/admin_manage"/>
+</menu>
