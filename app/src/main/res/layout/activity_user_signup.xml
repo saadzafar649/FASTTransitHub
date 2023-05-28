@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Authentication.UserSignupActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registration"
+            android:layout_margin="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_image" />
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_height="200dp"
+            android:layout_width="200dp"
+            android:background="@drawable/border"
+            android:padding="10dp"
+            android:onClick="Select_Image"
+            app:srcCompat="@drawable/name_icon_focused" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Select Route" />
+
+        <Spinner
+            android:id="@+id/busStops"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_busstop_icon"
+            android:dropDownSelector="@drawable/custom_roll_no_icon"
+
+            />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_input"
+            android:padding="10dp"
+            android:drawableStart="@drawable/custom_name_icon"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/name"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/rollNo"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_roll_no_icon"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/roll_number_20f_xxxx"
+            android:inputType="textAutoComplete" />
+
+
+        <EditText
+            android:id="@+id/registeremail"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_email_icon"
+            android:drawablePadding="12dp"
+            android:ems="10"
+            android:hint="@string/email_address"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/registerpassword"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_password_icon"
+            android:drawablePadding="12dp"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/phoneNo"
+            android:layout_width="277dp"
+            android:layout_height="53dp"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_phone_icon"
+            android:drawablePadding="12dp"
+            android:hint="@string/phone_number"
+            android:inputType="phone" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="140dp"
+            android:layout_margin="15dp"
+            android:layout_height="wrap_content"
+            android:onClick="Register"
+            style="@style/CardView.Light"
+            android:padding="4dp"
+            android:text="@string/register"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+</ScrollView>

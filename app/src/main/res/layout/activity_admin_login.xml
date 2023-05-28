@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Authentication.UserLoginActivity">
+    tools:context=".Authentication.AdminLoginActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/loginemail"
+        android:id="@+id/adminloginemail"
         android:layout_width="277dp"
         android:layout_height="53dp"
         android:layout_marginTop="44dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/adminloginPassword"
         android:layout_width="277dp"
         android:layout_height="53dp"
         android:layout_marginTop="40dp"
@@ -45,7 +45,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginemail" />
+        app:layout_constraintTop_toBottomOf="@+id/adminloginemail" />
 
 
     <Button
@@ -62,19 +62,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
-
-    <Button
-        android:id="@+id/btnRegister"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/register_yourself"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        app:layout_constraintVertical_bias="0.132" />
+        app:layout_constraintTop_toBottomOf="@+id/adminloginPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
