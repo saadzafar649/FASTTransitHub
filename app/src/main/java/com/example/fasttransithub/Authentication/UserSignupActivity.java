@@ -272,6 +272,9 @@ public class UserSignupActivity extends AppCompatActivity {
                                 DatabaseReference studentReference = database.getReference("Student/" + user.getUid());
                                 studentReference.setValue(student);
                             }
+                            firebaseAuth.signOut();
+                            Intent intent = new Intent(UserSignupActivity.this, UserLoginActivity.class);
+                            startActivity(intent);
                             registerButton.setEnabled(true);
                         } else {
                             // If sign in fails, display a message to the user.

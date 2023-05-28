@@ -88,13 +88,14 @@ public class UserLoginActivity extends AppCompatActivity {
                                     });
                                     if (isAdmin.get()) {
                                         editor.putString("userType", "Admin");
+                                        editor.commit();
 
                                         Intent intent= new Intent(UserLoginActivity.this, com.example.fasttransithub.Admin.DashboardActivity.class);
                                         startActivity(intent);
-
                                     }
                                     else {
                                         editor.putString("userType", "Student");
+                                        editor.commit();
 
                                         Intent intent= new Intent(UserLoginActivity.this, DashboardActivity.class);
                                         startActivity(intent);

@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:textDirection="firstStrongRtl"
+tools:context=".MainActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:textDirection="firstStrongRtl"
-    tools:context=".MainActivity">
-
-
-    <TextView
-        android:id="@+id/txtwellcome"
-        android:layout_width="214dp"
-        android:layout_height="55dp"
-        android:autoSizeTextType="uniform"
-
-        android:text="Wellcome"
-        android:textAlignment="center"
-        android:textColor="#0099d4"
-
-        android:textDirection="locale"
-        android:textEditPasteWindowLayout="@android:layout/simple_list_item_2"
-        android:textFontWeight="@integer/material_motion_duration_medium_1"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        tools:ignore="HardcodedText,MissingConstraints,VisualLintOverlap"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="338dp" />
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="250dp"
         android:layout_height="259dp"
-        app:srcCompat="@mipmap/nameicon_foreground"
-        tools:ignore="ContentDescription,ImageContrastCheck,MissingConstraints"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="48dp" />
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/nameicon_foreground" />
+    <TextView
+        android:id="@+id/txtwellcome"
+        android:layout_width="214dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
 
+        android:autoSizeTextType="uniform"
+        android:text="Wellcome"
+        android:textAlignment="center"
+
+        android:textColor="#0099d4"
+        android:textDirection="locale"
+        android:textEditPasteWindowLayout="@android:layout/simple_list_item_2"
+        android:textFontWeight="@integer/material_motion_duration_medium_1"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="70dp">
     <Button
         android:id="@+id/btnAdmin"
         android:layout_width="wrap_content"
@@ -43,11 +55,11 @@
         android:autoSizeTextType="uniform"
         android:padding="4dp"
         android:layout_margin="4dp"
-        android:text="Admin"
+        android:onClick="Login_Page"
+        android:text="@string/admin"
         android:textAlignment="center"
         tools:layout_editor_absoluteX="225dp"
-        tools:layout_editor_absoluteY="469dp"
-        tools:ignore="HardcodedText,MissingConstraints" />
+        tools:layout_editor_absoluteY="469dp" />
 
     <Button
         android:id="@+id/btnUser"
@@ -56,9 +68,8 @@
         android:layout_margin="4dp"
         android:autoSizeTextType="uniform"
         android:padding="4dp"
-        android:text="User"
+        android:text="@string/user"
         android:textAlignment="center"
-        tools:ignore="HardcodedText,MissingConstraints"
         tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="469dp" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:layout_editor_absoluteY="469dp" /></LinearLayout>
+</LinearLayout>
