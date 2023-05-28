@@ -7,7 +7,7 @@
     tools:context=".Admin.DashboardActivity">
 
     <FrameLayout
-        android:id="@+id/flFragment"
+        android:id="@+id/admin"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
