@@ -44,21 +44,21 @@ public class DashboardActivity extends AppCompatActivity
             case R.id.home:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.home, user_home_Fragment)
+                        .replace(R.id.User, user_home_Fragment)
                         .commit();
                 return true;
 
             case R.id.schedule:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.schedule,user_schedule_Fragment)
+                        .replace(R.id.User,user_schedule_Fragment)
                         .commit();
                 return true;
 
             case R.id.account:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.account,  user_Account_Fragment)
+                        .replace(R.id.User,  user_Account_Fragment)
                         .commit();
                 return true;
         }

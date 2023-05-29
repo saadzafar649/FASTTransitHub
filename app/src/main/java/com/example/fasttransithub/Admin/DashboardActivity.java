@@ -47,14 +47,14 @@ public class DashboardActivity extends AppCompatActivity
             case R.id.home:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.home, home_fragment)
+                        .replace(R.id.admin, home_fragment)
                         .commit();
                 return true;
 
             case R.id.manage_account:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.manage_account, manage_account_fragment)
+                        .replace(R.id.admin, manage_account_fragment)
                         .commit();
                 return true;
         }
