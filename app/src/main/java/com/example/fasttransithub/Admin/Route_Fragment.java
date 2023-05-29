@@ -8,13 +8,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
+import com.example.fasttransithub.Authentication.UserSignupActivity;
 import com.example.fasttransithub.R;
-import com.example.fasttransithub.Util.Student;
+import com.example.fasttransithub.Util.Route;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,38 +27,46 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Manage_Account_Fragment extends Fragment {
+public class Route_Fragment extends Fragment {
     View view;
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
 
     RecyclerView recyclerView;
+
+    public Route_Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
-        databaseReference = database.getReference("Student");
+        databaseReference = database.getReference("Routes");
 
-        getStudents();
+        getRoutes();
     }
-    private void getStudents() {
+
+    private void getRoutes() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Student> students = new ArrayList();
+                ArrayList<Route> routes = new ArrayList();
                 try {
                     snapshot.getChildren().forEach((dataSnapshot -> {
-                        String uid=String.valueOf(dataSnapshot.getKey());
-                        Student student = dataSnapshot.getValue(Student.class);
-                        student.setUid(uid);
-                        students.add(student);
+                        Route route = new Route();
+                        route.setName(String.valueOf(dataSnapshot.getKey()));
+                        dataSnapshot.getChildren().forEach((stops -> {
+                            route.stops.add(new Route.Stop(stops.getKey()));
+                        }));
+                        routes.add(route);
                     }));
 
 
-                    Collections.sort(students, new Comparator<Student>() {
-                        public int compare(Student o1, Student o2) {
-                            return o1.rollNo.compareTo(o2.rollNo);
+                    Collections.sort(routes, new Comparator<Route>() {
+                        public int compare(Route o1, Route o2) {
+                            return o1.name.compareTo(o2.name);
                         }
                     });
                 } catch (Exception e) {
@@ -64,7 +74,7 @@ public class Manage_Account_Fragment extends Fragment {
                 }
 
 
-                StudentAdapter adapter = new StudentAdapter(students);
+                RouteAdapter adapter = new RouteAdapter(routes);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -75,11 +85,13 @@ public class Manage_Account_Fragment extends Fragment {
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_manage__account_, container, false);
-        recyclerView = view.findViewById(R.id.studentsRecyclerView);
+
+        view = inflater.inflate(R.layout.fragment_map_, container, false);
+        recyclerView = view.findViewById(R.id.routeRecyclerView);
 
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager((getActivity().getApplicationContext()));
@@ -87,4 +99,6 @@ public class Manage_Account_Fragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         return view;
     }
+
+
 }

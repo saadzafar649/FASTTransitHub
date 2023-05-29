@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Admin.Manage_Account_Fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/manage_Fragment"
-        android:layout_width="331dp"
-        android:layout_height="83dp"
-        android:text="Account Manage"
-        android:textColor="#43a047"
-        android:textSize="40sp"
-        android:textStyle="italic|bold" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/students_list" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/studentsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
+
+</LinearLayout>

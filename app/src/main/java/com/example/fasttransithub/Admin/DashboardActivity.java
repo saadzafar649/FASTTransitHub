@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity
                 .setOnNavigationItemSelectedListener(this);
         bottomNavigationView.setSelectedItemId(R.id.home);
     }
-    Map_Fragment map_Fragment = new  Map_Fragment();
+    Route_Fragment route_Fragment = new Route_Fragment();
     Home_Fragment home_fragment = new Home_Fragment();
     Manage_Account_Fragment manage_account_fragment = new Manage_Account_Fragment();
 
@@ -40,7 +40,7 @@ public class DashboardActivity extends AppCompatActivity
             case R.id.map:
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.admin, map_Fragment)
+                        .replace(R.id.admin, route_Fragment)
                         .commit();
                 return true;
 
