@@ -1,10 +1,26 @@
 package com.example.fasttransithub.Util;
 
 public class Student {
-    public String name,rollNo,busStop,route,phone,email,imageUrl;
+    public String uid,name,rollNo,busStop,route,phone,email,imageUrl;
     public boolean isVerified = false;
     public String getName() {
         return name;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean verified) {
+        isVerified = verified;
     }
 
     public void setName(String name) {
@@ -59,7 +75,21 @@ public class Student {
         this.email = email;
     }
 
-    public Student(String name, String rollNo, String busStop, String route, String phone, String email, String imageUrl) {
+    public Student() {
+    }
+
+    public Student( String name, String rollNo, String busStop, String route, String phone, String email, String imageUrl,String uid) {
+        this.uid = uid;
+        this.name = name;
+        this.rollNo = rollNo;
+        this.busStop = busStop;
+        this.route = route;
+        this.phone = phone;
+        this.email = email;
+        this.imageUrl = imageUrl;
+    }
+
+    public Student( String name, String rollNo, String busStop, String route, String phone, String email, String imageUrl) {
         this.name = name;
         this.rollNo = rollNo;
         this.busStop = busStop;
