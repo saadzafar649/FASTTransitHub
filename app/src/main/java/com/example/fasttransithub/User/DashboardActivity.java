@@ -27,7 +27,7 @@ public class DashboardActivity extends AppCompatActivity
 
         bottomNavigationView
                 .setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.User);
+        bottomNavigationView.setSelectedItemId(R.id.home);
     }
 
     user_home_Fragment user_home_Fragment = new user_home_Fragment();
