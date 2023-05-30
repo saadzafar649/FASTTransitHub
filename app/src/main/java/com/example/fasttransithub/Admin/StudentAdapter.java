@@ -1,5 +1,6 @@
 package com.example.fasttransithub.Admin;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         holder.M_Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //load new activity here
+                Intent intent = new Intent(v.getContext(), StudentDataActivity.class);
+                intent.putExtra("uid", student.uid);
+                v.getContext().startActivity(intent);
             }
         });
         holder.delete_button.setOnClickListener(new View.OnClickListener() {
