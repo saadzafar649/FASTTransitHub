@@ -1,14 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.user_home_Fragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".User.user_home_Fragment"
+    android:orientation="vertical"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:gravity="center">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="262dp"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent"
+        android:gravity="center">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="218dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/user_rollno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="Roll No"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/user_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="Name"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/user_Route"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="Route No"
+                android:textColor="@color/colorSecondary"
+                android:textSize="25sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/user_rout_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:text="Time:"
+                android:textColor="@color/colorSecondary"
+                android:textSize="25sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/user_profileImage"
+            android:layout_width="149dp"
+            android:layout_height="119dp"
+            android:background="@drawable/border"
+            android:onClick="Select_Image"
+            android:padding="10dp"
+            app:srcCompat="@drawable/name_icon_focused"
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/user_Qr"
+        android:layout_width="300dp"
+        android:layout_height="292dp"
+        android:layout_margin="50dp"
+        android:onClick="Select_Image"
+        app:srcCompat="@drawable/user_qr"
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+
+</LinearLayout>
