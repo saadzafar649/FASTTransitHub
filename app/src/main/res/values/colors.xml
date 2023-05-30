@@ -14,4 +14,6 @@
     <color name="colorSecondary">#802293</color>
     <color name="colorSecondaryVariant">#a974ee</color>
     <color name="colorOnSecondary">#ff5e5b</color>
+    <color name="lavender">#CCB0FF</color>
+    <color name="lavendeer">#E4D5FF</color>
 </resources>
