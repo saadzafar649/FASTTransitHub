@@ -2,7 +2,7 @@ package com.example.fasttransithub.Util;
 
 public class Student {
     public String uid,name,rollNo,busStop,route,phone,email,imageUrl;
-    public boolean isVerified = false;
+    public boolean verified = false;
     public String getName() {
         return name;
     }
@@ -16,11 +16,11 @@ public class Student {
     }
 
     public boolean isVerified() {
-        return isVerified;
+        return verified;
     }
 
     public void setVerified(boolean verified) {
-        isVerified = verified;
+        this.verified = verified;
     }
 
     public void setName(String name) {

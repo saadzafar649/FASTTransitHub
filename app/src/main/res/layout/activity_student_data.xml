@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.StudentDataActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/studentImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/name_icon_focused" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Roll Number" />
+
+            <EditText
+                android:id="@+id/stuRollNo"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_roll_no_icon"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:imeActionLabel="Asd"
+                android:padding="10dp"
+                android:hint="@string/roll_number_20f_xxxx" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name" />
+
+            <EditText
+                android:id="@+id/stuName"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_name_icon"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:imeActionLabel="Asd"
+                android:padding="10dp"
+                android:hint="Name" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone Number" />
+
+            <EditText
+                android:id="@+id/stuPhone"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_phone_icon"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:padding="10dp"
+                android:hint="Phone Number" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email" />
+
+
+            <TextView
+                android:id="@+id/stuMail"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bus Stop" />
+
+
+            <TextView
+                android:id="@+id/stuBusStop"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:text="BusStop"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Route" />
+
+
+            <TextView
+                android:id="@+id/stuRoute"
+                android:layout_width="277dp"
+                android:layout_height="53dp"
+                android:text="Route"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/feePaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fee Paid  " />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:onClick="Update"
+            android:text="Update" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </LinearLayout>
+</ScrollView>

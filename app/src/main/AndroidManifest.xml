@@ -14,6 +14,15 @@
         android:theme="@style/Theme.FASTTransitHub"
         tools:targetApi="31">
         <activity
+            android:name=".Admin.StudentDataActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".Authentication.UserSignupActivity"
             android:exported="true">
             <intent-filter>
