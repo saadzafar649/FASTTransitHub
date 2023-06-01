@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.RouteDataActivity">
+
+
+    <EditText
+        android:id="@+id/stopName"
+        android:layout_width="250dp"
+        android:layout_height="53dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/custom_input"
+        android:padding="10dp"
+        android:drawableStart="@drawable/custom_busstop_icon"
+        android:drawablePadding="12dp"
+        android:layout_weight="10"
+        android:ems="10"
+        android:hint="Stop Name"
+        android:inputType="textPersonName" />
+
+
+
+
+    <Button
+        android:id="@+id/timeButton"
+        android:layout_width="100dp"
+        android:layout_height="53dp"
+        android:layout_margin="7dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/colorSecondary"
+        android:text="@string/select_time" />
+    <Button
+        android:id="@+id/addStop"
+        android:layout_width="100dp"
+        android:layout_height="53dp"
+        android:layout_margin="7dp"
+        android:layout_weight="1"
+        android:onClick="Add_Stop"
+        android:text="Add Stop" />
+
+
+
+
+</LinearLayout>

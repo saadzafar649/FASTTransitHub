@@ -96,7 +96,6 @@ public class StudentDataActivity extends AppCompatActivity {
                     routeView.setText(student.getRoute());
                     busStopView.setText(student.getBusStop());
                     feePaidView.setChecked(student.verified);
-                    Toast.makeText(StudentDataActivity.this, String.valueOf(student.verified) , Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

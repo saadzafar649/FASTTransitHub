@@ -17,4 +17,5 @@
     <string name="route">Route</string>
     <string name="route_list">Route List</string>
     <string name="students_list">Students List</string>
+    <string name="select_time">Select Time</string>
 </resources>

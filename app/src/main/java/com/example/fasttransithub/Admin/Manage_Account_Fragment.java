@@ -48,9 +48,13 @@ public class Manage_Account_Fragment extends Fragment {
                 try {
                     snapshot.getChildren().forEach((dataSnapshot -> {
                         String uid=String.valueOf(dataSnapshot.getKey());
-                        Student student = dataSnapshot.getValue(Student.class);
-                        student.setUid(uid);
-                        students.add(student);
+                        try {
+                            Student student = dataSnapshot.getValue(Student.class);
+                            student.setUid(uid);
+                            students.add(student);
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }));
 
 

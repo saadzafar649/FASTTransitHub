@@ -14,14 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fasttransithub.R;
 import com.example.fasttransithub.Util.Route;
 import com.example.fasttransithub.Util.Student;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder>{
     private ArrayList<Student> studentList;
+    FirebaseDatabase database;
+    DatabaseReference databaseReference;
 
 
     public StudentAdapter(ArrayList<Student> studentList) {
+        database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
+        databaseReference = database.getReference("Student");
         this.studentList = studentList;
     }
 
@@ -37,6 +43,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Student student = studentList.get(position);
         holder.M_Name.setText(student.getRollNo());
+        DatabaseReference databaseReference2 = databaseReference.child(student.getUid());
         holder.M_Name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +55,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
         holder.delete_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                databaseReference2.removeValue();
                 Log.d("TAG",student.getRollNo());
             }
         });

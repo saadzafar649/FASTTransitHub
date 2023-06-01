@@ -68,7 +68,6 @@ public class UserLoginActivity extends AppCompatActivity {
         if(error)return;
 
         view.setEnabled(false);
-
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
