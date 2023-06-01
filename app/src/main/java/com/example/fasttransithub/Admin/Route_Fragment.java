@@ -1,7 +1,13 @@
 package com.example.fasttransithub.Admin;
 
 import android.Manifest;
+import android.accessibilityservice.AccessibilityService;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +19,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,6 +111,7 @@ public class Route_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        createNotificationChannel();
 
         view = inflater.inflate(R.layout.fragment_map_, container, false);
         recyclerView = view.findViewById(R.id.routeRecyclerView);
@@ -113,13 +121,30 @@ public class Route_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Add_Route(v);
-//                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-//                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, 1);
-//                builder.setContentTitle("Picture Download")
-//                        .setContentText("Download in progress")
-//                        .setSmallIcon(R.drawable.busstop_icon)
-//                        .setPriority(NotificationCompat.PRIORITY_LOW);
-//                Toast.makeText(getContext(), "Notification", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, "com.example.fasttransithub");
+                intent.putExtra(Settings.EXTRA_CHANNEL_ID, "channel");
+                startActivity(intent);
+                Intent intent1 = new Intent(getContext(),DashboardActivity.class);
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
+                builder.setContentTitle("Route added")
+                        .setContentText(routeName.getText().toString())
+                        .setSmallIcon(R.drawable.email_icon)
+                        .setPriority(NotificationCompat.PRIORITY_MAX);
+                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                notificationManager.notify(1, builder.build());
+
+                Toast.makeText(getContext(), "Notification", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,7 +153,23 @@ public class Route_Fragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         return view;
     }
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is not in the Support Library.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "channel";
+            String description = "discription";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system. You can't change the importance
+            // or other notification behaviors after this.
+            NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
+
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 
     public void Add_Route(View view) {
         String name = routeName.getText().toString();
