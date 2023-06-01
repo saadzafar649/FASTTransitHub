@@ -27,7 +27,6 @@ import java.util.Comparator;
 
 public class Manage_Account_Fragment extends Fragment {
     View view;
-
     FirebaseDatabase database;
     DatabaseReference databaseReference;
 

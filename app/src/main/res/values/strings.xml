@@ -18,4 +18,8 @@
     <string name="route_list">Route List</string>
     <string name="students_list">Students List</string>
     <string name="select_time">Select Time</string>
+    <string name="routes">Routes</string>
+    <string name="stop">Stop</string>
+    <string name="stop_time">Stop Time</string>
+    <string name="time">Time</string>
 </resources>

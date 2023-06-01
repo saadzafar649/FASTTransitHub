@@ -5,13 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.fasttransithub.Authentication.UserSignupActivity;
 import com.example.fasttransithub.R;
@@ -37,6 +44,9 @@ public class RouteDataActivity extends AppCompatActivity {
     private Button showPopupButton;
     private EditText stopName;
     private Dialog popupDialog;
+    private TableLayout tableLayout;
+    View backButton;
+    TextView appBar;
     Route route;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,15 @@ public class RouteDataActivity extends AppCompatActivity {
 //        timePicker = findViewById(R.id.timePicker1);
         showPopupButton = findViewById(R.id.timeButton);
         stopName = findViewById(R.id.stopName);
+        tableLayout = findViewById(R.id.tableLayout);
+        appBar = findViewById(R.id.appBar);
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
@@ -56,7 +75,115 @@ public class RouteDataActivity extends AppCompatActivity {
                 showPopup();
             }
         });
+        // Create the table dynamically
     }
+    private void createTable() {
+        tableLayout.removeAllViews();
+        // Create headers
+
+
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    route.stops=new ArrayList<>();
+                    route.setName(String.valueOf(snapshot.getKey()));
+                    snapshot.getChildren().forEach((stops -> {
+                        route.stops.add(new Route.Stop(stops.getKey(),stops.getValue(String.class)));
+                    }));
+                    route.stops.sort(new Comparator<Route.Stop>() {
+                        public int compare(Route.Stop o1, Route.Stop o2) {
+                            return o1.getTime().compareTo(o2.getTime());
+                        }
+                    });
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+                TableRow headerRow = new TableRow(RouteDataActivity.this);
+                headerRow.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                ));
+
+                tableLayout.removeAllViews();
+
+                TextView header1 = createTextView("Stop");
+                TextView header2 = createTextView("Time");
+                TextView header3 = createTextView("Delete");
+
+                headerRow.addView(header1);
+                headerRow.addView(header2);
+                headerRow.addView(header3);
+
+                tableLayout.addView(headerRow);
+
+                for (Route.Stop stop: route.stops) {
+                    TableRow row = new TableRow(RouteDataActivity.this);
+                    row.setLayoutParams(new TableRow.LayoutParams(
+                            TableRow.LayoutParams.MATCH_PARENT,
+                            TableRow.LayoutParams.WRAP_CONTENT
+                    ));
+
+                    TextView cell1 = createTextView(stop.getName());
+                    TextView cell2 = createTextView(stop.getTime());
+                    View cell3 = createDeleteButton(stop.getName());
+
+                    row.addView(cell1);
+                    row.addView(cell2);
+                    row.addView(cell3);
+
+                    tableLayout.addView(row);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+    }
+    private TextView createTextView(String text) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+        textView.setLayoutParams(layoutParams);
+        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL); // Center align text vertically and horizontally
+        textView.setPadding(16, 16, 16, 16);
+
+        return textView;
+    }
+
+    private ImageButton createDeleteButton(String text) {
+        ImageButton imageButton = new ImageButton(this);
+
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                1f
+        );
+        imageButton.setLayoutParams(layoutParams);
+        imageButton.setPadding(16, 16, 16, 16);
+        imageButton.setImageResource(R.drawable.delete_icon);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference.child(text).removeValue();
+            }
+        });
+        imageButton.setBackgroundResource(R.color.ic_launcher_background);
+        return imageButton;
+    }
+
 
     @Override
     protected void onStart() {
@@ -64,8 +191,10 @@ public class RouteDataActivity extends AppCompatActivity {
         Intent intent = getIntent();
         route = new Route();
         route.name = intent.getStringExtra("route");
+        appBar.setText(route.name);
         databaseReference = databaseReference.child(route.name);
 
+        createTable();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

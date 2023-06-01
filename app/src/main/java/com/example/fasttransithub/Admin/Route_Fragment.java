@@ -1,8 +1,13 @@
 package com.example.fasttransithub.Admin;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,10 +17,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.fasttransithub.Authentication.UserSignupActivity;
 import com.example.fasttransithub.R;
 import com.example.fasttransithub.Util.Route;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +38,11 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Route_Fragment extends Fragment {
+    private static final String CHANNEL_ID = "my_channel_id";
+
     View view;
+    EditText routeName;
+    Button addRoute;
 
     FirebaseDatabase database;
     DatabaseReference databaseReference;
@@ -44,6 +58,7 @@ public class Route_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
         databaseReference = database.getReference("Routes");
+
 
         getRoutes();
     }
@@ -92,7 +107,21 @@ public class Route_Fragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_map_, container, false);
         recyclerView = view.findViewById(R.id.routeRecyclerView);
-
+        routeName = view.findViewById(R.id.routeName);
+        addRoute = view.findViewById(R.id.addRoute);
+        addRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Add_Route(v);
+//                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+//                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, 1);
+//                builder.setContentTitle("Picture Download")
+//                        .setContentText("Download in progress")
+//                        .setSmallIcon(R.drawable.busstop_icon)
+//                        .setPriority(NotificationCompat.PRIORITY_LOW);
+//                Toast.makeText(getContext(), "Notification", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager((getActivity().getApplicationContext()));
         recyclerView.setLayoutManager(layoutManager);
@@ -101,4 +130,22 @@ public class Route_Fragment extends Fragment {
     }
 
 
+    public void Add_Route(View view) {
+        String name = routeName.getText().toString();
+        if (name.isEmpty()) {
+            Toast.makeText(getContext(), "Enter name of the Route", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        databaseReference.child(name).setValue("null").addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getContext(), "Route added", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(RouteDataActivity.this,DashboardActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+    }
 }
