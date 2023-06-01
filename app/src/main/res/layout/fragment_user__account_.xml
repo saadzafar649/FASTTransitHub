@@ -24,13 +24,14 @@
 
         <ImageView
             android:id="@+id/profile_Image"
-            android:layout_height="200dp"
             android:layout_width="200dp"
-            android:background="@drawable/border"
-            android:padding="10dp"
-            android:onClick="Select_Image"
+            android:layout_height="200dp"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/name_icon_focused" />
+            android:background="@drawable/border"
+            android:onClick="Select_Image"
+            android:padding="10dp"
+            app:srcCompat="@drawable/name_icon_focused"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/acc_name"
