@@ -37,7 +37,6 @@ public class Manage_Account_Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
         databaseReference = database.getReference("Student");
-
         getStudents();
     }
     private void getStudents() {

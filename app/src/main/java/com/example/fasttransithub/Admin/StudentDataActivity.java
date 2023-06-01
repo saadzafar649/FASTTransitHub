@@ -133,7 +133,7 @@ public class StudentDataActivity extends AppCompatActivity {
 
 
 
-    public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
+    public static class DownloadImage extends AsyncTask<String, Void, Bitmap> {
 
         @Override
         protected Bitmap doInBackground(String... strings) {
