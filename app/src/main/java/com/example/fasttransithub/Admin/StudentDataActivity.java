@@ -144,7 +144,7 @@ public class StudentDataActivity extends AppCompatActivity {
                 Log.d("TAG", "doInBackground() in progress");
                 return bitmap;
 
-            } catch (MalformedURLException e) {
+            } catch (MalformedURLException ignored) {
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -162,6 +162,7 @@ public class StudentDataActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(StudentDataActivity.this, "Student Updated", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(StudentDataActivity.this,DashboardActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });

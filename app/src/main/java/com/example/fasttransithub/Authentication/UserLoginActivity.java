@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.fasttransithub.R;
+import com.example.fasttransithub.User.BgService;
 import com.example.fasttransithub.User.DashboardActivity;
 import com.example.fasttransithub.Util.Route;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -92,13 +93,18 @@ public class UserLoginActivity extends AppCompatActivity {
                                         editor.commit();
 
                                         Intent intent= new Intent(UserLoginActivity.this, com.example.fasttransithub.Admin.DashboardActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
                                     }
                                     else {
                                         editor.putString("userType", "Student");
                                         editor.commit();
 
+                                        Intent serviceIntent = new Intent(UserLoginActivity.this, BgService.class);
+                                        startService(serviceIntent);
+
                                         Intent intent= new Intent(UserLoginActivity.this, DashboardActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent);
 
                                     }

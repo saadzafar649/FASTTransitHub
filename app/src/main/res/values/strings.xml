@@ -24,4 +24,7 @@
     <string name="time">Time</string>
     <string name="logout">Logout</string>
     <string name="update">Update</string>
+    <string name="paid_students">Paid Students</string>
+    <string name="unpaid_students">Unpaid Students</string>
+    <string name="report">Report</string>
 </resources>

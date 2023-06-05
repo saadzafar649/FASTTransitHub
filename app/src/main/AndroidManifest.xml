@@ -51,6 +51,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".User.DashboardActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".Admin.DashboardActivity"
             android:exported="true">
             <intent-filter>
@@ -68,6 +72,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".User.BgService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

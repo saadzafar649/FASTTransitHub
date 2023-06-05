@@ -30,6 +30,7 @@ import android.widget.Toast;
 
 import com.example.fasttransithub.Authentication.UserSignupActivity;
 import com.example.fasttransithub.R;
+import com.example.fasttransithub.Util.CustomNotification;
 import com.example.fasttransithub.Util.Route;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -111,7 +112,6 @@ public class Route_Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        createNotificationChannel();
 
         view = inflater.inflate(R.layout.fragment_map_, container, false);
         recyclerView = view.findViewById(R.id.routeRecyclerView);
@@ -121,28 +121,7 @@ public class Route_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Add_Route(v);
-//                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-//                intent.putExtra(Settings.EXTRA_APP_PACKAGE, "com.example.fasttransithub");
-//                intent.putExtra(Settings.EXTRA_CHANNEL_ID, "channel");
-//                startActivity(intent);
-//                Intent intent1 = new Intent(getContext(),DashboardActivity.class);
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
-                builder.setContentTitle("Route added")
-                        .setContentText(routeName.getText().toString())
-                        .setSmallIcon(R.drawable.email_icon)
-                        .setPriority(NotificationCompat.PRIORITY_MAX);
-                if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                notificationManager.notify(1, builder.build());
+
 
                 Toast.makeText(getContext(), "Notification", Toast.LENGTH_SHORT).show();
             }
@@ -153,23 +132,7 @@ public class Route_Fragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         return view;
     }
-    private void createNotificationChannel() {
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is not in the Support Library.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "channel";
-            String description = "discription";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system. You can't change the importance
-            // or other notification behaviors after this.
-            NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
 
     public void Add_Route(View view) {
         String name = routeName.getText().toString();
@@ -183,8 +146,7 @@ public class Route_Fragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 Toast.makeText(getContext(), "Route added", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(RouteDataActivity.this,DashboardActivity.class);
-//                startActivity(intent);
+                CustomNotification.showNotification(getContext(),CHANNEL_ID,"Route Added",routeName.getText().toString());
             }
         });
 
