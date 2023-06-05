@@ -84,7 +84,8 @@ public class BgService extends Service {
                                         // Check if the stop time is within the next 5 minutes
                                         if (timedifference!=timeDifferenceMinutes &&
                                                 timeDifferenceMinutes <= 5 && timeDifferenceMinutes > 0) {
-                                            CustomNotification.showNotification(getApplicationContext(), "my_channel_id", "Route Added", "yes");
+                                            CustomNotification.showNotification(getApplicationContext(), "my_channel_id", "Your bus will arrive in "+
+                                                    String.valueOf(timeDifferenceMinutes)+" minutes", "Be Ready");
                                             timedifference = timeDifferenceMinutes;
                                         }
                                         else{
@@ -146,34 +147,6 @@ public class BgService extends Service {
         // Start the stop time checking task
         handler.postDelayed(stopTimeCheckingTask, 0);
 
-
-
-
-
-
-
-//
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                // Re-fetch the data and check the stop time
-//                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        // Add the logic to check the stop time here (similar to the code above)
-//
-//                        // Schedule the next execution after 1 minute
-//                        handler.postDelayed(this, 60 * 1000);
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//            }
-//        }, 60 * 1000);
         return START_NOT_STICKY;
     }
 
