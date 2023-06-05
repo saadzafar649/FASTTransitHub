@@ -121,11 +121,11 @@ public class Route_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Add_Route(v);
-                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-                intent.putExtra(Settings.EXTRA_APP_PACKAGE, "com.example.fasttransithub");
-                intent.putExtra(Settings.EXTRA_CHANNEL_ID, "channel");
-                startActivity(intent);
-                Intent intent1 = new Intent(getContext(),DashboardActivity.class);
+//                Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+//                intent.putExtra(Settings.EXTRA_APP_PACKAGE, "com.example.fasttransithub");
+//                intent.putExtra(Settings.EXTRA_CHANNEL_ID, "channel");
+//                startActivity(intent);
+//                Intent intent1 = new Intent(getContext(),DashboardActivity.class);
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID);
                 builder.setContentTitle("Route added")

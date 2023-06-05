@@ -22,4 +22,6 @@
     <string name="stop">Stop</string>
     <string name="stop_time">Stop Time</string>
     <string name="time">Time</string>
+    <string name="logout">Logout</string>
+    <string name="update">Update</string>
 </resources>

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.fasttransithub.R;
 
 import java.util.ArrayList;
@@ -66,7 +68,7 @@ public class schedule_adapter extends BaseAdapter {
         }
 
         holder.stop.setText(User_scheduleArrayList.get(position).getstop());
-        holder.time.setText(String.valueOf(User_scheduleArrayList.get(position).getstop()));
+        holder.time.setText(String.valueOf(User_scheduleArrayList.get(position).gettime()));
 
         return convertView;
     }

@@ -74,7 +74,6 @@
             android:layout_width="149dp"
             android:layout_height="119dp"
             android:background="@drawable/border"
-            android:onClick="Select_Image"
             android:padding="10dp"
             app:srcCompat="@drawable/name_icon_focused"
             tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
@@ -98,7 +97,6 @@
         android:layout_height="318dp"
         android:layout_margin="50dp"
         android:background="@drawable/home_border"
-        android:onClick="Select_Image"
         app:srcCompat="@drawable/user_qr"
         tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 

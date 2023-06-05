@@ -1,5 +1,8 @@
 package com.example.fasttransithub.Util;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Student {
     public String uid,name,rollNo,busStop,route,phone,email,imageUrl;
     public boolean verified = false;
@@ -97,6 +100,23 @@ public class Student {
         this.phone = phone;
         this.email = email;
         this.imageUrl = imageUrl;
+    }
+    public String toString() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("uid", uid);
+            jsonObject.put("name", name);
+            jsonObject.put("rollNo", rollNo);
+            jsonObject.put("busStop", busStop);
+            jsonObject.put("route", route);
+            jsonObject.put("phone", phone);
+            jsonObject.put("email", email);
+            jsonObject.put("imageUrl", imageUrl);
+            jsonObject.put("verified", verified);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return jsonObject.toString();
     }
 
 }

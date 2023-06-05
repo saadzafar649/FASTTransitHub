@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".User.DashboardActivity"
+            android:name=".Admin.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -60,7 +60,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Admin.DashboardActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

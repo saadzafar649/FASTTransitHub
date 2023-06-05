@@ -66,8 +66,6 @@ public class StudentDataActivity extends AppCompatActivity {
         feePaidView = findViewById(R.id.feePaid);
         imageView = findViewById(R.id.studentImage);
 
-        String uid = "3rNr2P7GnvaTpflW5rZqsbJGx3O2";
-
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
 
 

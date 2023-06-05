@@ -74,6 +74,8 @@ public class UserLoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         if (task.isSuccessful()) {
+                            Toast.makeText(UserLoginActivity.this, "asd",
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             databaseReference.addValueEventListener(new ValueEventListener() {
                                 @Override
@@ -116,5 +118,11 @@ public class UserLoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void Register_User(View view) {
+
+        Intent intent= new Intent(UserLoginActivity.this, UserSignupActivity.class);
+        startActivity(intent);
     }
 }

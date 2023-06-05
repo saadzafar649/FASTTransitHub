@@ -4,7 +4,7 @@ public class User_schedule_frag {
 
 
         private String stop;
-        private int time;
+        private String time;
 
         public String getstop() {
             return stop;
@@ -14,11 +14,11 @@ public class User_schedule_frag {
             this.stop = Stop;
         }
 
-        public int gettime() {
+        public String gettime() {
             return time;
         }
 
-        public void settime(int time) {
+        public void settime(String time) {
             this.time = time;
         }
 

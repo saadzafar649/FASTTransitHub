@@ -1,5 +1,6 @@
 package com.example.fasttransithub.User;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -13,14 +14,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fasttransithub.Admin.StudentDataActivity;
+import com.example.fasttransithub.Authentication.UserLoginActivity;
 import com.example.fasttransithub.R;
 import com.example.fasttransithub.Util.Student;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,21 +48,50 @@ public class user_Account_Fragment extends Fragment {
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     ImageView imageView;
-    TextView  rollNoView, nameView, phoneView,emailView;
+    EditText  rollNoView, nameView, phoneView;
+    Button updateButton,logoutButton;
     Student student;String uid;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String uid = "3rNr2P7GnvaTpflW5rZqsbJGx3O2";
+        firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://fast-transit-hub-default-rtdb.firebaseio.com/");
-        databaseReference = database.getReference("Student");
 
+
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.fragment_user__account_, container, false);
+        rollNoView =view.findViewById(R.id.acc_rollNo);
+        nameView=view.findViewById(R.id.acc_name);
+        phoneView=view.findViewById(R.id.acc_phoneNo);
+        phoneView=view.findViewById(R.id.acc_phoneNo);
+        imageView=view.findViewById(R.id.profile_Image);
+        updateButton=view.findViewById(R.id.acc_btn);
+        logoutButton=view.findViewById(R.id.logout_btn);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Update(v);
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout(v);
+            }
+        });
         getStudents_account();
+
+        return view;
     }
     private void getStudents_account() {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        user.getUid();
+        uid =user.getUid();
         databaseReference = database.getReference("Student").child(uid);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -68,7 +102,6 @@ public class user_Account_Fragment extends Fragment {
                     rollNoView.setText(student.getRollNo());
                     nameView.setText(student.getName());
                     phoneView.setText(student.getPhone());
-                    emailView.setText(student.getEmail());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -84,10 +117,18 @@ public class user_Account_Fragment extends Fragment {
 
     public void Download_Image_AsyncTask(String url) {
         Thread newThread = new Thread(() -> {
-           DownloadImage downloadImage = new DownloadImage();
+            DownloadImage downloadImage = new DownloadImage();
             try {
                 Log.d("TAG", "Button Clicked");
                 Bitmap bitmap = downloadImage.execute(url).get();
+
+                if (isAdded()) {
+                    requireActivity().runOnUiThread(() -> {
+                        // Update UI on the main thread
+                        imageView.setImageBitmap(bitmap);
+                        Log.d("TAG", "Back in Main");
+                    });
+                }
             } catch (ExecutionException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -97,6 +138,26 @@ public class user_Account_Fragment extends Fragment {
         newThread.start();
     }
 
+    public void Logout(View view) {
+        firebaseAuth.signOut();
+        Intent intent = new Intent(getContext(), UserLoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void Update(View view) {
+        student.rollNo = rollNoView.getText().toString();
+        student.name = nameView.getText().toString();
+        student.phone = phoneView.getText().toString();
+        databaseReference.setValue(student).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getContext(), "Data Updated", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), DashboardActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     public class DownloadImage extends AsyncTask<String, Void, Bitmap> {
@@ -121,11 +182,4 @@ public class user_Account_Fragment extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_user__account_, container, false);
-
-        return view;
-    }
 }
